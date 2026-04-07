@@ -4,7 +4,10 @@ import { getSession } from "../state/auth";
  * PUBLIC_INTERFACE
  * Return backend base URL.
  *
- * Uses REACT_APP_API_BASE_URL if provided, otherwise defaults to local dev :3001.
+ * Uses REACT_APP_API_BASE_URL if provided.
+ *
+ * Local dev default:
+ * - Backend: http://localhost:3001
  */
 export function getApiBaseUrl() {
   return process.env.REACT_APP_API_BASE_URL || "http://localhost:3001";

@@ -1,82 +1,46 @@
-# Lightweight React Template for KAVIA
+# Inventory React Frontend
 
-This project provides a minimal React template with a clean, modern UI and minimal dependencies.
+Modern React frontend for the Asset / Inventory Management System.
 
-## Features
+## Local development
 
-- **Lightweight**: No heavy UI frameworks - uses only vanilla CSS and React
-- **Modern UI**: Clean, responsive design with KAVIA brand styling
-- **Fast**: Minimal dependencies for quick loading times
-- **Simple**: Easy to understand and modify
+### Prerequisites
 
-## Getting Started
+- Backend API running (default: `http://localhost:3001`)
+- DB container running (MongoDB) and backend configured to connect to it
 
-In the project directory, you can run:
+### Environment variables
 
-### `npm start`
+Create a `.env` file in this folder (Create React App format):
 
-Runs the app in development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+- `REACT_APP_API_BASE_URL=http://localhost:3001`
 
-### `npm test`
+This controls where the frontend sends API requests.
 
-Launches the test runner in interactive watch mode.
+### Run
 
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-## Customization
-
-### Colors
-
-The main brand colors are defined as CSS variables in `src/App.css`:
-
-```css
-:root {
-  --kavia-orange: #E87A41;
-  --kavia-dark: #1A1A1A;
-  --text-color: #ffffff;
-  --text-secondary: rgba(255, 255, 255, 0.7);
-  --border-color: rgba(255, 255, 255, 0.1);
-}
+```bash
+npm install
+npm start
 ```
 
-### Components
+App will be available at:
 
-This template uses pure HTML/CSS components instead of a UI framework. You can find component styles in `src/App.css`. 
+- `http://localhost:3000`
 
-Common components include:
-- Buttons (`.btn`, `.btn-large`)
-- Container (`.container`)
-- Navigation (`.navbar`)
-- Typography (`.title`, `.subtitle`, `.description`)
+## End-to-end (frontend ↔ backend)
 
-## Learn More
+1. Start DB container (MongoDB) and ensure backend has:
+   - `MONGODB_URL`
+   - `MONGODB_DB`
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+2. Start backend with CORS enabled for the frontend:
+   - `ALLOWED_ORIGINS=http://localhost:3000`
 
-### Code Splitting
+3. Start this frontend with:
+   - `REACT_APP_API_BASE_URL=http://localhost:3001`
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+## Notes
 
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- The frontend stores the JWT token in localStorage and sends it as `Authorization: Bearer <token>`.
+- If backend CORS is misconfigured you may see browser CORS errors; ensure `ALLOWED_ORIGINS` is explicitly set (not `*`).
